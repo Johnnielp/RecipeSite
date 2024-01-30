@@ -1,0 +1,642 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body class="text-gray-600 font-body">
+    <div class="grid md:grid-cols-3">
+      <!--Content Wrapper-->
+      <div class="md:col-span-1 md:flex md:justify-end">
+        <nav class="text-right md:fixed">
+          <div class="flex justify-between items-center">
+            <i class="fa-solid fa-utensils fa-2xl"></i>
+            <i class="fa-solid fa-book fa-2xl ml-4"></i>
+            <h1
+              class="font-bold uppercase p-4 border-b border-gray-100 text-2xl"
+            >
+              <a href="/" class="hover:text-gray-700 text-5xl">Cookbook</a>
+            </h1>
+            <div class="px-4 cursor-pointer md:hidden" id="burger">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </div>
+          </div>
+          <ul class="text-lg mt-6 hidden md:block" id="menu">
+            <li class="text-gray-700 py-1 font-bold" id="homeli">
+              <a
+                href="#home"
+                class="px-4 flex justify-end border-r-4 border-primary" id="homesec"
+              >
+                <span>Home</span>
+                <svg
+                  class="w-5 ml-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li class="py-1" id="aboutli">
+              <a href="#about" class="px-4 flex justify-end" id="aboutsec">
+                <span>About</span>
+                <svg
+                  class="w-5 ml-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li class="py-1">
+              <a href="#contact" class="px-4 flex justify-end" id="contactsec">
+                <span id="contactli">Contact</span>
+                <svg
+                  class="w-5 ml-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!--Navbar end-->
+      <main class="px-16 py-6 bg-gray-100 md:col-span-2">
+        <div class="flex justify-center md:justify-end">
+
+          <div>
+            <button class="text-primary btn border-primary border-2 hover:bg-primary hover:text-white transition ease-out duration-500" onclick="openAuthModal()">Log in</button>
+          </div>
+
+           <div id="overlay" class="overlay"></div>
+           
+
+    <!-- Authentication modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            <h2 class="text-2xl font-bold mb-4"><i class="fa-solid fa-user pr-4 text-primary"></i>Cookbook</h2>
+            <form>
+                <!-- Add your form fields here -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Username:
+                    </label>
+                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your username">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Password:
+                    </label>
+                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter your password">
+                </div>
+                <div class="mb-4">
+                    <input type="checkbox" id="rememberMe" class="mr-2">
+                    <label for="rememberMe" class="text-gray-700 text-sm">Remember me</label>
+                </div>
+                <button class="bg-primary hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+          
+
+
+
+
+
+          <a
+            href="#"
+            class="text-primary ml-2 btn border-primary border-2 hover:bg-primary hover:text-white transition ease-out duration-500"
+            >Sign up</a
+          >
+        </div>
+
+        
+
+
+
+        <header id="home">
+          <h2 class="text-gray-700 text-6xl font-semibold">Recipes</h2>
+          <!-- <h3 class="text-2xl font-semibold">For Ninjas</h3> -->
+        </header>
+        <div id="recipeModal" class="modal">
+    <div class="modal-content border-r-4">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="recipeTitle" class="text-2xl font-bold mb-4"></h2>
+        <div id="recipeDetails"></div>
+    </div>
+</div>
+        <div>
+          <h4 class="font-bold mt-12 pb-2 border-b border-gray 200">
+            Latest Recipes
+          </h4>
+          <div class="mt-8 grid gap-10 md:grid-cols-3">
+            <!-- cards go here -->
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer" onclick="openModal('Salted Caramel Pancakes', ['Ingredient 1', 'Ingredient 2'], 'Step 1: ...')"
+            >
+              <img
+                src="img/pancakes.jpg"
+                alt="pancakes"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Salted caramel pancakes</span>
+                <span class="block text-gray-500 text-sm">Recipe by Eric</span>
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>15 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer" onclick="openModal('Mexican Sweet Potatoes', ['Ingredient 1', 'Ingredient 2'], 'Step 1: ...')"
+            >
+              <img
+                src="img/mexican.jpg"
+                alt="mexican"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Mexican sweet potatoes</span>
+                <span class="block text-gray-500 text-sm">Recipe by Paul</span>
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>35 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer"
+            >
+              <img
+                src="img/ramen.jpg"
+                alt="ramen"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Chicken ramen</span>
+                <span class="block text-gray-500 text-sm">Recipe by Lily</span>
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>25 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer"
+            >
+              <img
+                src="img/salmon.jpg"
+                alt="salmon"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Salmon stripes</span>
+                <span class="block text-gray-500 text-sm">Recipe by Mario</span>
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>25 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer"
+            >
+              <img
+                src="img/burger.jpg"
+                alt="burger"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Double Cheeseburger</span>
+                <span class="block text-gray-500 text-sm">Recipe by John</span>
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>45 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer"
+            >
+              <img
+                src="img/pasta.jpg"
+                alt="pasta"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Pasta salad</span>
+                <span class="block text-gray-500 text-sm"
+                  >Recipe by Janine</span
+                >
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>20 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer hidden more"
+            >
+              <img
+                src="img/tomatosoup.jpg"
+                alt="tomatosoup"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Tomato soup</span>
+                <span class="block text-gray-500 text-sm"
+                  >Recipe by Victor</span
+                >
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>20 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer hidden more"
+            >
+              <img
+                src="img/shrimp.jpg"
+                alt="shrimp"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Sweet chilli shrimp</span>
+                <span class="block text-gray-500 text-sm"
+                  >Recipe by Martin</span
+                >
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>15 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer hidden more"
+            >
+              <img
+                src="img/spinach.jpg"
+                alt="spinach"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Spinach avocado toast</span>
+                <span class="block text-gray-500 text-sm">Recipe by Ted</span>
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>15 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer hidden moremore"
+            >
+              <img
+                src="img/pizza.jpg"
+                alt="pizza"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Pizza carbonara</span>
+                <span class="block text-gray-500 text-sm">Recipe by Evie</span>
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>30 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer hidden moremore"
+            >
+              <img
+                src="img/sushi.jpg"
+                alt="sushi"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Philadelphia rolls sushi</span>
+                <span class="block text-gray-500 text-sm">Recipe by Mark</span>
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>20 mins</span>
+              </div>
+            </div>
+            <div
+              class="card hover:shadow-lg hover:scale-105 transition ease-in-out cursor-pointer hidden moremore"
+            >
+              <img
+                src="img/Burrito.jpg"
+                alt="burrito"
+                class="w-full h-2/4 sm:h-3/4 object-cover"
+              />
+              <div class="m-4">
+                <span class="font-bold">Vegan Burrito</span>
+                <span class="block text-gray-500 text-sm"
+                  >Recipe by Daphne</span
+                >
+              </div>
+              <div class="badge">
+                <svg
+                  class="w-5 inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span>15 mins</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- <h4 class="font-bold mt-12 pb-2 border-b border-gray 200">
+            Most Popular
+          </h4> -->
+          <div class="mt-8">
+            <!-- cards go here -->
+          </div>
+          <div class="flex justify-center border-b pb-4">
+            <div
+              class="bg-secondary-100 text-secondary-200 btn hover:shadow-inner transform hover:scale-125 hover:bg-black hover:text-white transition ease-out duration-300"
+              id="load"
+            >
+              Load more
+            </div>
+          </div>
+        </div>
+        <section class="px-16 py-6 bg-gray-100 border-b" id="about">
+        <div>
+          <h1 class="bold uppercase text-3xl flex justify-center pb-4">About us</h2>
+            <span class="text-lg"
+          >Welcome to CookBook, your go-to destination for quick and delicious
+          healthy food recipes! At CookBook, we understand the importance of
+          maintaining a balanced lifestyle without compromising on taste. Our
+          mission is to make nutritious eating easy, enjoyable, and accessible
+          to everyone. Dive into a world of culinary inspiration, where we
+          curate a collection of mouthwatering recipes designed to suit busy
+          lifestyles. Whether you're a seasoned chef or a kitchen novice, our
+          user-friendly platform offers a variety of quick and easy-to-follow
+          recipes that prioritize health without sacrificing flavor. What sets
+          us apart is our commitment to promoting wellness through wholesome
+          ingredients and creative meal ideas. Discover a diverse range of
+          recipes, from vibrant salads and hearty soups to satisfying main
+          courses and guilt-free desserts. We believe that preparing nutritious
+          meals should be a delightful experience, and our recipes reflect that
+          philosophy. Explore our website to find not only step-by-step
+          instructions but also helpful tips, nutritional information, and
+          cooking hacks. We aim to empower you with the knowledge and
+          inspiration needed to make informed choices about your food, leading
+          to a healthier and happier lifestyle. Join our community of food
+          enthusiasts who share a passion for quick, delicious, and
+          health-conscious cooking. Whether you're striving for fitness goals,
+          exploring a new dietary path, or simply looking for a tasty meal on a
+          tight schedule, CookBook has got you covered. Embark on a journey to a
+          healthier you with CookBook. Let's make cooking nutritious meals a
+          breeze, so you can savor every bite and nourish your body with the
+          goodness it deserves!</span
+        >
+        </div>
+        
+      </section>
+      <footer class="px-16 py-6 bg-gray-100" id="contact">
+        <div>
+          <h1 class="text-3xl uppercase pt-4 pb-4 flex justify-center">Contact Page</h1>
+        <span>We love hearing from our community of food enthusiasts! If you have a favorite healthy recipe you'd like to share or if you've created your own nutritious masterpiece, we invite you to reach out to us. At <span class="text-xl">CookBook</span>, we believe in the power of collective culinary creativity, and we welcome your contributions to our ever-growing collection of recipes. Simply drop us a line through our contact form or send us an email at <span class="text-lg text-blue-700 cursor-pointer">Cookbook@gmail.com</span>. We appreciate your enthusiasm for promoting healthy and delicious cooking, and we look forward to featuring your unique recipes on our platform. Let's inspire others together on the journey to flavorful and wholesome meals!
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+</svg>
+</span>
+        </div>
+        <div class="flex justify-evenly pt-14 border-b mb-4">
+          <span class="cursor-pointer text-blue-800"><i class="fa-brands fa-facebook fa-lg"></i>
+            Facebook
+          </span>
+          <span class="cursor-pointer text-red-600"><i class="fa-brands fa-instagram fa-lg"></i>
+            Instagram
+          </span>
+          <span class="cursor-pointer text-blue-400"><i class="fa-brands fa-twitter fa-lg"></i>
+            Twitter
+          </span>
+          <span class="cursor-pointer text-gray-800"><i class="fa-brands fa-discord fa-lg"></i>
+            Discord
+          </span>
+        </div>
+        <div class="text-center pt-10">COOKBOOK 2014 ©️ . All rights reserved </div>
+        
+      </footer>
+      </main>
+      
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
